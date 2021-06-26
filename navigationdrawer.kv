@@ -1,0 +1,67 @@
+# -*- coding: utf-8 -*-
+#<ItemDrawer>:
+#    theme_text_color: "Custom"
+#    on_release:
+#        print("HI IM Pringint" )
+#        self.parent.set_color_item(self)
+#
+#    IconLeftWidget:
+#        id: icon
+#        icon: root.icon
+#        theme_text_color: "Custom"
+#        text_color: root.text_color
+
+
+#<ContentNavigationDrawer>:
+#    orientation: "vertical"
+#    padding: "8dp"
+#    spacing: "8dp"
+#
+#    AnchorLayout:
+#        anchor_x: "left"
+#        size_hint_y: None
+#        height: avatar.height
+#
+#        Image:
+#            id: avatar
+#            #size_hint: None, None
+#            #size: "300dp", "300dp"
+#            source: "img/tiger.jpg"
+#
+#
+#    ScrollView:
+#
+##        DrawerList:
+##            id: md_list
+#
+#        MDList:
+#            id: md_list
+#            OneLineIconListItem:
+#                id:tracao_name
+#                text: "TRAÇÃO"
+#                on_press:
+#                    root.nav_drawer.set_state("close")
+#                    root.screen_manager.current = "tracao"
+#
+#                ImageLeftWidget:
+#                    source: "compressao.png"
+#
+#            OneLineIconListItem:
+#                text: "COMPRESSÃO"
+#                on_press:
+#                    root.nav_drawer.set_state("close")
+#                    root.screen_manager.current = "compressao"
+#
+#                ImageLeftWidget:
+#                    source: "compressao.png"
+#
+#
+#            OneLineIconListItem:
+#                text: "FLEXÃO"
+#                on_press:
+#                    root.nav_drawer.set_state("close")
+#                    root.screen_manager.current = "compressao"
+#
+#                ImageLeftWidget:
+#                    source: "compressao.png"
+

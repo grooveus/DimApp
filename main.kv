@@ -1,0 +1,752 @@
+#: import Factory kivy.factory.Factory
+<ToolTipMDIconButton@MDIconButton+MDTooltip>
+<ListItemWithCheckbox>:
+
+    RightCheckbox:
+        group:'perfil'
+        on_active:
+            app.preenchimento(root.text)
+            app.retorno()
+
+
+
+<Check@MDCheckbox>:
+    group: 'group'
+    size_hint: None, None
+    size: dp(48), dp(48)
+Screen:
+    name:'raiz'
+    id: raiz
+    MDToolbar:
+        id: toolbar
+        pos_hint: {"top": 1}
+        elevation: 10
+        title: "VERIFICAÇÃO PFF"
+        left_action_items: [["menu", lambda x: nav_drawer.toggle_nav_drawer()]]
+
+    NavigationLayout:
+        id:nav_layout
+        x: toolbar.height
+
+
+    GerenciadorScreen:
+        id: screen_manager
+
+
+#---------------------------------------------propriedades-----------------------------------------------------------------------------
+#---------------------------------------------propriedades-----------------------------------------------------------------------------
+#---------------------------------------------propriedades-----------------------------------------------------------------------------
+
+        Propriedades:
+            name:'propriedades'
+            id:flexao1
+            pos_hint: {'top': 1.0 - toolbar.height / self.height}
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, .2#app.theme_cls.primary_color
+                Rectangle:
+                    id: rec_flexao
+                    pos: (self.x,0)
+                    size: (self.size)
+            BoxLayout:
+                size_hint_y:.3
+                pos_hint:{'x':0, 'y':.7}
+                padding:10
+                Image:
+                    id:img
+                    source:'perfil_ze.png'
+                    size:60,60
+            ScrollView:
+                size_hint_y: .6
+                pos_hint:{'x':0, 'y': .1}
+                do_scroll_x: False
+                do_scroll_y: True
+                BoxLayout:
+                    id:scroll_flexao
+                    padding:50
+                    spacing:10
+                    orientation:'vertical'
+                    pos_hint:{'x':0, 'y':0}
+                    size:(root.width, scroll_flexao.height)
+                    size_hint_x: None
+                    size_hint_y: None
+#                    cols: 1
+                    height: self.minimum_height
+
+                    BoxLayout:
+                        padding:0
+                        size_hint_x: None
+                        pos_hint:{'center_x':.45}
+                        orientation:'horizontal'
+                        MDFillRoundFlatButton:
+                            text:'Selecione um perfil'
+                            pos_hint:{'center_y':.5}
+                            bg_color: app.theme_cls.primary_color
+                            on_press:
+                                app.ida()
+                                screen_manager.current='selecao'
+                        ToolTipMDIconButton:
+                            id:help_flexao
+                            pos_hint:{'center_y':.5}
+                            icon: 'help-circle'
+                            user_font_size:'25sp'
+                            outer_circle_color: app.theme_cls.primary_color
+                            on_release: app.tap_target_start_flexao()
+                            tooltip_text:'help'
+
+
+
+                    Label:
+                        text:''
+                        size_hint: None, None
+                        height:50
+                        width:150
+                    Label:
+                        text:'COMPRIMENTO DE FLAMBAGEM'
+                    MDTextField:
+                        id: lx
+                        hint_text:'Lx (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: ly
+                        hint_text:'Ly (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: lz
+                        hint_text:'Lz (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: kx
+                        hint_text:'Kx'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: ky
+                        hint_text:'Ky'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: kz
+                        hint_text:'Kz'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    Label:
+                        text:'MATERIAL'
+                    MDTextField:
+                        id: fy
+                        hint_text:'Fy (KN/cm²)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: fu
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'fu (KN/cm²)'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: moduloe
+                        hint_text:'E (KN/cm²)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: modulog
+                        hint_text:'G KN/cm²'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    Label:
+                        text:'COEFICIENTES'
+                    MDTextField:
+                        id: ct_tracao
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'Ct'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: cb_flexao
+                        hint_text:'Cb'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: gama_flexao
+                        hint_text:'gama flexão'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: gama_compressao
+                        hint_text:'gama compressão'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+
+                    Label:
+                        text:'PROPRIEDADES GEOMÉTRICAS'
+                    MDTextField:
+                        id: area_an0_tracao
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'An0 (cm²)'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+
+                    MDTextField:
+                        id: area_an_tracao
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'An (cm²)'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: area
+                        hint_text:'A (cm²)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: bf
+                        hint_text:'bf (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: bw
+                        hint_text:'bw (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: t
+                        hint_text:'t (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: d
+                        hint_text:'D (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: ix
+                        hint_text:'Ix (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: iy
+                        hint_text:'Iy (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: wx
+                        hint_text:'Wx (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: wy
+                        hint_text:'Wy (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:iw
+                        hint_text:'Iw (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:it
+                        hint_text:'It (cm^4)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:rx
+                        hint_text:'rx (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:ry
+                        hint_text:'ry (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:x0
+                        hint_text:'x0 (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id:y0
+                        hint_text:'y0 (cm)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+
+
+
+  #---------------------------------------------Solicitante-----------------------------------------------------------------------------
+  #---------------------------------------------Solicitante-----------------------------------------------------------------------------
+  #---------------------------------------------Solicitante-----------------------------------------------------------------------------
+  #---------------------------------------------Solicitante-----------------------------------------------------------------------------
+
+        Solicitante:
+            name:'solicitante'
+            pos_hint: {'top': 1.0 - toolbar.height / self.height}
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, .2#app.theme_cls.primary_color
+                Rectangle:
+                    id: rec_tracao
+                    pos: (self.x,0)
+                    size: (self.size)
+            BoxLayout:
+                size_hint_y:.3
+                pos_hint:{'x':0, 'y':.7}
+                padding:10
+                Image:
+                    id: img_solicitante
+                    source:'perfil_ze.png'
+                    size:60,60
+            ScrollView:
+                size_hint_y: .6
+                pos_hint:{'x':0, 'y': .1}
+                do_scroll_x: False
+                do_scroll_y: True
+                BoxLayout:
+                    padding:50
+                    spacing:10
+                    orientation:'vertical'
+                    pos_hint:{'x':0, 'y':0}
+                    size:(root.width, root.height*0.6)#valores acima de root.heght*0.6 fazem scrollar
+                    size_hint_x: None
+                    size_hint_y: None
+                    cols: 1
+                    height: self.minimum_height
+
+
+                    BoxLayout:
+                        padding:0
+                        size_hint_x: None
+                        size_hint_y:.1
+                        pos_hint:{'center_x':.45}
+#                        spacing:self.height/10
+                        orientation:'horizontal'
+                        MDFillRoundFlatButton:
+                            text:'Selecione um perfil'
+                            secondary_text:'Perfis normatizados'
+                            pos_hint:{'center_y':.5}
+                            bg_color: app.theme_cls.primary_color
+                            on_press:
+                                app.ida()
+                                screen_manager.current='selecao'
+                        ToolTipMDIconButton:
+                            id:help
+                            pos_hint:{'center_y':.5}
+                            icon: 'help-circle'
+                            user_font_size:'25sp'
+                            outer_circle_color: app.theme_cls.primary_color
+                            on_release: app.tap_target_start()
+                            tooltip_text:'help'
+
+                    MDTextField:
+                        id: nsd
+                        hint_text:'Nsd (KN)'
+                        input_type:'number'
+                        input_filter: 'float'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+                    MDTextField:
+                        id: vsd
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'Vsd (KN)'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+
+                    MDTextField:
+                        id: msd
+                        input_type:'number'
+                        input_filter: 'float'
+                        hint_text:'Mxsd (KN.cm)'
+                        size_hint: None, None
+                        height:30
+                        width:150
+                        pos_hint:{'center_x':.5}
+
+
+
+                    MDRectangleFlatButton:
+                        id:calculo
+                        text: "verificar"
+                        pos_hint:{'center_x':.5, 'center_y':.5}
+                        on_press:
+                            app.cortante()
+                            app.calculo_tracao()
+                            app.calculo_compressao()
+                            app.calculo_flexao()
+                            app.limite_esbeltez()
+                            app.esforcos_compostos()
+                            app.distorcional_compressao()
+                            app.distorcional_flexao()
+                        on_release:
+                            screen_manager.current = "resultados"
+        Selecao:
+            id:selecao
+            name:'selecao'
+            pos_hint: {'top': 1.0 - toolbar.height / self.height}
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, .2#app.theme_cls.primary_color
+                Rectangle:
+                    id: rec_tracao_sel
+                    pos: (self.x,0)
+                    size: (self.size)
+            ScrollView:
+                size_hint_y: .8
+                pos_hint:{'x':0, 'y': .1}
+                do_scroll_x: False
+                do_scroll_y: True
+                BoxLayout:
+                    id:box_selecao
+                    padding:50
+                    orientation:'vertical'
+                    pos_hint:{'x':0, 'y':0}
+                    size:(root.width, root.height)
+                    size_hint_x: None
+                    size_hint_y: None
+#                    cols: 1
+                    height: self.minimum_height
+
+                    BoxLayout:
+                        spacing:root.width/20
+                        size_hint_y:.3
+                        BoxLayout:
+                            orientation:'vertical'
+                            Check:
+                                active:True
+                                pos_hint:{'center_x':.5}
+                                on_active:
+                                    gerenciador_tabelas.current='cantoneira'
+                                    app.imprimindo()
+                            Image:
+                                source:'perfil_cantoneira.png'
+
+                        BoxLayout:
+                            orientation:'vertical'
+                            Check:
+                                pos_hint:{'center_x':.5}
+                                on_active:
+                                    gerenciador_tabelas.current='perfilue'
+                                    app.imprimindo2()
+                            Image:
+                                source:'perfil_ue.png'
+                        BoxLayout:
+                            orientation:'vertical'
+                            Check:
+                                pos_hint:{'center_x':.5}
+                                on_active: gerenciador_tabelas.current='perfilze'
+                            Image:
+                                source:'perfil_ze.png'
+                    BoxLayout:
+                        size_hint_y:.6
+                        ScreenManager:
+                            id:gerenciador_tabelas
+                            TabelaCantoneira:
+                                name:'cantoneira'
+                                BoxLayout:
+                                    ScrollView:
+                                        size_hint_y:.9
+                                        pos_hint:{'x':0, 'y':0}
+                                        MDList:
+                                            id:lista_cantoneira
+
+
+                            TabelaPerfilUe:
+                                name:'perfilue'
+                                BoxLayout:
+                                    ScrollView:
+                                        size_hint_y:.9
+                                        pos_hint:{'x':0, 'y':0}
+                                        MDList:
+                                            id:lista_perfilue
+                            TabelaPerfilZe:
+                                name:'perfilze'
+                                BoxLayout:
+                                    ScrollView:
+                                        size_hint_y:.9
+                                        pos_hint:{'x':0, 'y':0}
+                                        MDList:
+                                            id:lista_perfilze
+
+
+
+
+
+
+
+        Resultados:
+            name:'resultados'
+            ScrollView:
+                size_hint_y: .8
+                pos_hint:{'x':0, 'y': .1}
+                do_scroll_x: False
+                do_scroll_y: True
+                BoxLayout:
+                    id:box_resultado
+                    spacing: 20
+                    padding:50
+                    orientation:'vertical'
+                    pos_hint:{'x':0, 'y':0}
+#                    x:root.width
+                    size_hint_x: 1
+                    size_hint_y: None
+#                    cols: 1
+                    height: self.minimum_height
+
+                    Label:
+                        text:'Limite de esbeltez'
+#                        size_hint_y:None
+#                        y:20
+                    MDTextField:
+                        id:limite_tracao
+                        hint_text: "Limite  Tracão"
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:limite_compressao
+                        hint_text: "Limite Compressão"
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+
+                    Label:
+                        text:'Cargas Axiais'
+#                        size_hint_y:None
+#                        y:20
+                    MDTextField:
+                        id:nrd_tracao
+                        hint_text: " Nrd Tracão "
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:nrd_compressao
+                        hint_text: " Nrd Compressão "
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    Label:
+                        text:'Flexão'
+#                        size_hint_y:None
+#                        y:20
+                    MDTextField:
+                        id:mrd_flexao
+                        hint_text: " Mrd Flexao "
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:cortante
+                        hint_text: " Cortante "
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:flexao_cortante
+                        hint_text: "Fletor + Cortante"
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:flexao_axial
+                        hint_text: "Fletor + Compressão"
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+
+                    Label:
+                        text:'Flambagem Distorcional'
+#                        size_hint_y:None
+#                        y:20
+                    MDTextField:
+                        id:distorcional_compressao
+                        hint_text: "Compressão"
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        pos_hint:{'center_x':.5}
+                        disabled:True
+                    MDTextField:
+                        id:distorcional_flexao
+                        hint_text: " Flexão "
+#                        mode: "rectangle"
+                        icon_right: "circle"
+                        icon_right_color: app.theme_cls.primary_color
+                        size_hint_x: None
+                        width:250
+                        disabled:True
+                        pos_hint:{'center_x':.5}
+
+
+
+        Variaveis:
+            Label:
+                id:mrd_escoamento
+                text:''
+
+
+
+    MDNavigationDrawer:
+        id: nav_drawer
+        ContentNavigationDrawer:
+            screen_manager: screen_manager
+            nav_drawer: nav_drawer
